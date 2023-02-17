@@ -4,6 +4,7 @@ import helmet from 'helmet'
 
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import characterRoutes from './routes/character.routes'
 
 const app = express()
 
@@ -15,7 +16,8 @@ app.get('/', (req, res) => {
   res.json('Hello World')
 })
 
-app.use('/api/users', userRoutes)
 app.use('/api/auth', authRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/characters', characterRoutes)
 
 export default app
