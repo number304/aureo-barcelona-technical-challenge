@@ -4,7 +4,7 @@ import { verifyToken } from "../middlewares"
 
 const router = Router()
 
-router.post('/signin', authController.signIn)
+router.post('/login', authController.signIn)
 router.post('/signup', authController.signUp)
 
 router.post('/refresh-signin', verifyToken, authController.signInWithJwt)

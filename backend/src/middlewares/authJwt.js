@@ -4,7 +4,8 @@ import User from '../models/User'
 
 export const verifyToken = async (req, res, next) => {
   try {
-    const token = req.headers['x-access-token']
+    const token = req.cookies['access_token']
+    console.log(token)
     if (!token) return res.status(403).json({ message: 'Not authenticated' })
 
     const decoded = jwt.verify(token, config.JWT_SECRET)
