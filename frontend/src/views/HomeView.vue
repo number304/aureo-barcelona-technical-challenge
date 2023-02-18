@@ -1,9 +1,23 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import LoginForm from '../components/LoginForm.vue'
+import { ref } from 'vue'
+import RegisterForm from '@/components/RegisterForm.vue';
+
+const showRegister = ref(false)
+
+function setShowRegister(val: boolean) { showRegister.value = val }
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <RegisterForm v-if="showRegister" @to-login="setShowRegister(false)" />
+    <LoginForm v-else @to-register="setShowRegister(true)" />
   </main>
 </template>
+
+<style>
+.emit-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+</style>
