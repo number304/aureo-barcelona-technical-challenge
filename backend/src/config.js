@@ -10,5 +10,7 @@ export default {
   DB_PASSWORD: process.env.DB_PASSWORD,
   DB_DOMAIN: process.env.DB_DOMAIN,
   DB_PORT: process.env.DB_PORT,
-  DB_AUTH_MECHANISM: process.env.DB_AUTH_MECHANISM
+  DB_AUTH_MECHANISM: process.env.DB_AUTH_MECHANISM,
+
+  AUTHORIZED_ORIGIN: process.env.AUTHORIZED_ORIGIN,
 }
