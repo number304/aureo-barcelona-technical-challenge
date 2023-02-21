@@ -1,6 +1,6 @@
 export default interface User {
   email: string
-  favoriteCharacters: string[]
+  favoriteCharacters: number[]
   nickname: string
   createdAt: string
   updatedAt: string
