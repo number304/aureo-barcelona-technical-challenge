@@ -4,8 +4,6 @@ import config from "../config"
 import ms from 'ms'
 
 export const signUp = async (req, res) => {
-  // const { nickname, email, password } = req.body
-
   const userFoundByEmail = await User.findOne({ email: req.body.email })
   if (userFoundByEmail) return res.status(400).json({ message: 'This email is already in use.' })
 
@@ -58,4 +56,9 @@ export const signIn = async (req, res) => {
 export const signInWithJwt = async (req, res) => {
   const userFound = await User.findById(req.userId)
   res.json(userFound)
+}
+
+export const logout = async (_, res) => {
+  res.setHeader('Set-Cookie', ['access_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;']);
+  res.status(200).json({ message: 'Logged out.' })
 }

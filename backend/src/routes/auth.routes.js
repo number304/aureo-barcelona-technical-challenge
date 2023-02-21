@@ -7,6 +7,7 @@ const router = Router()
 router.post('/login', authController.signIn)
 router.post('/signup', authController.signUp)
 
-router.post('/refresh-signin', verifyToken, authController.signInWithJwt)
+router.get('/logout', verifyToken, authController.logout)
+router.get('/refresh-signin', verifyToken, authController.signInWithJwt)
 
 export default router
