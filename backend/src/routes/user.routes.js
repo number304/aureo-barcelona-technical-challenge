@@ -8,6 +8,8 @@ router.put('/', verifyToken, userController.editUserById)
 
 router.delete('/', verifyToken, userController.deleteUserById)
 
-router.put('/favoriteCharacters', verifyToken, userController.updateFavoriteCharacters)
+router.put('/update-pass', verifyToken, userController.editPassword)
+
+router.put('/favorite-characters', verifyToken, userController.updateFavoriteCharacters)
 
 export default router
