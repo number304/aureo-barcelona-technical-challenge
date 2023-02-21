@@ -4,10 +4,8 @@ import { verifyToken } from "../middlewares"
 
 const router = Router()
 
-router.get('/get-the-smiths', characterController.getTheSmiths)
-
 router.get('/', verifyToken, characterController.getAllCharacters)
 
-router.get('/favoriteCharacters', verifyToken, characterController.getAllCharacters)
+router.get('/favorite-characters', verifyToken, characterController.getFavoriteCharacters)
 
 export default router
