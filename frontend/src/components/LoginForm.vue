@@ -2,9 +2,11 @@
 import apiClient from "@/utils/axiosClient";
 import { ref, computed } from "vue"
 import { useUserStore } from '@/stores/user'
+import { useRouter } from "vue-router";
 
 const nickname = ref("")
 const password = ref("")
+const router = useRouter()
 const emits = defineEmits(['to-register'])
 
 // UI
@@ -15,6 +17,8 @@ const disableLogin = computed(() => nickname.value.length < 3 || password.value.
 function login() {
     apiClient.post('auth/login', { nickname: nickname.value, password: password.value })
         .then(res => userStore.setUser(res.data))
+        .then(_ => router.push('/characters'))
+        .catch(err => console.error(err))
 }
 
 function toRegister() { emits('to-register') }

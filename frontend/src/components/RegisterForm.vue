@@ -2,11 +2,13 @@
 import apiClient from "@/utils/axiosClient";
 import { ref, computed } from "vue"
 import { useUserStore } from '@/stores/user'
+import { useRouter } from "vue-router";
 
 const nickname = ref("")
 const email = ref("")
 const password = ref("")
 const confirmPassword = ref("")
+const router = useRouter()
 const emits = defineEmits(['to-login'])
 
 // UI
@@ -31,6 +33,8 @@ const registerRules = {
 function register() {
     apiClient.post('auth/signup', { email: email.value, nickname: nickname.value, password: password.value })
         .then(res => userStore.setUser(res.data))
+        .then(_ => router.push('/characters'))
+        .catch(err => console.error(err))
 }
 
 function toLogin() { emits('to-login') }
