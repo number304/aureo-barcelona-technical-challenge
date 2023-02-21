@@ -14,7 +14,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  favoriteCharacters: [String],
+  favoriteCharacters: [Number],
 }, {
   timestamps: true,
 })
