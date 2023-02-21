@@ -4,8 +4,12 @@ import User from '../models/User'
 
 export const verifyToken = async (req, res, next) => {
   try {
-    const token = req.cookies['access_token']
-    console.log(token)
+    if (!req.headers.cookie) return res.status(403).json({ message: 'Not authenticated' })
+
+    const token = req.headers.cookie.split(',')
+      .filter(cookie => cookie.includes('access_token'))
+      [0]?.replace('access_token=', '')
+
     if (!token) return res.status(403).json({ message: 'Not authenticated' })
 
     const decoded = jwt.verify(token, config.JWT_SECRET)
@@ -16,6 +20,7 @@ export const verifyToken = async (req, res, next) => {
 
     next()
   } catch (error) {
-    return res.status(401).json({ message: 'Not authenticated' })
+    console.error(error)
+    return res.status(500).json({ message: 'Server Error' })
   }
 }
